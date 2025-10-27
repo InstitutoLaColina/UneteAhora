@@ -98,6 +98,41 @@
             }
         }
 
+        /* Iconos educativos animados */
+        .education-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .edu-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: eduFloat 20s infinite linear;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes eduFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* Estilos para el logo */
         .logo-container {
             margin-bottom: 40px;
@@ -238,6 +273,33 @@
             font-size: 1.8rem;
         }
 
+        /* Frase final destacada */
+        .final-call {
+            font-size: 3.5rem;
+            margin-top: 40px;
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+            animation: pulseFinal 2s infinite, slideInFromBottom 1.5s ease-out;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes pulseFinal {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(255, 204, 0, 0.9);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+            }
+        }
+
         /* Animaciones */
         @keyframes zoomIn {
             from {
@@ -335,7 +397,7 @@
             transition: width 0.3s ease;
         }
 
-        /* Control de música */
+        /* Control de música - VISIBLE */
         .music-control {
             position: fixed;
             top: 20px;
@@ -362,6 +424,70 @@
         .music-control i {
             font-size: 1.5rem;
             color: white;
+        }
+
+        /* Icono de Facebook con texto */
+        .facebook-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .facebook-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .facebook-icon:hover {
+            background: rgba(59, 89, 152, 0.7);
+            transform: scale(1.1);
+        }
+
+        .facebook-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .facebook-text {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: pulseFacebook 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .facebook-text:hover {
+            background: rgba(59, 89, 152, 0.7);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulseFacebook {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 89, 152, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 89, 152, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 89, 152, 0);
+            }
         }
 
         /* Mensaje de música */
@@ -419,18 +545,51 @@
                 font-size: 1.2rem;
             }
             
+            .final-call {
+                font-size: 2.5rem;
+            }
+            
             .music-control {
                 width: 40px;
                 height: 40px;
                 top: 10px;
                 right: 10px;
             }
+            
+            .facebook-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .facebook-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .facebook-icon i {
+                font-size: 1.5rem;
+            }
+            
+            .facebook-text {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="video-container">
-        <!-- Control de música -->
+        <!-- Contenedor de Facebook con texto -->
+        <div class="facebook-container">
+            <a href="https://www.facebook.com/share/1Fm9Laeoyj/" target="_blank" class="facebook-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1Fm9Laeoyj/" target="_blank" class="facebook-text">
+                Facebook La Colina
+            </a>
+        </div>
+        
+        <!-- Control de música - VISIBLE -->
         <div class="music-control" id="musicControl">
             <i class="fas fa-volume-up"></i>
         </div>
@@ -447,6 +606,7 @@
         <!-- Fondo animado -->
         <div class="animated-bg"></div>
         <div class="particles" id="particles"></div>
+        <div class="education-icons" id="educationIcons"></div>
         
         <!-- Escena 1: Introducción con logo -->
         <div class="scene active" id="scene1">
@@ -478,7 +638,7 @@
             <p class="phrase">El <span class="highlight">futuro pertenece</span> a aquellos que creen en la belleza de sus sueños</p>
         </div>
         
-        <!-- Escena 6: Características -->
+        <!-- Escena 6: Características - MÁS TIEMPO -->
         <div class="scene" id="scene6">
             <h2 class="subtitle">Nuestros Pilares Educativos</h2>
             <div class="features-container">
@@ -537,7 +697,8 @@
                     </div>
                 </div>
             </div>
-            <h2 class="subtitle" style="margin-top: 40px;">¡Te esperamos!</h2>
+            <!-- Frase final DESTACADA -->
+            <h2 class="final-call">¡Te esperamos!</h2>
         </div>
         
         <!-- Barra de progreso -->
@@ -548,7 +709,8 @@
 
     <script>
         // Configuración de tiempos para cada escena (en milisegundos)
-        const sceneTimes = [5000, 4000, 4000, 4000, 4000, 6000, 5000, 5000];
+        // MÁS TIEMPO en la escena 6 (Pilares Educativos) - aumentado de 6000 a 9000
+        const sceneTimes = [5000, 4000, 4000, 4000, 4000, 9000, 5000, 5000];
         let currentScene = 0;
         const totalScenes = 8;
         let progressInterval;
@@ -558,6 +720,9 @@
         const musicControl = document.getElementById('musicControl');
         const musicNotice = document.getElementById('musicNotice');
         let isMusicPlaying = false;
+        
+        // Configurar volumen automático (30% de volumen para no ser intrusivo)
+        backgroundMusic.volume = 0.3;
         
         // Crear partículas de fondo
         function createParticles() {
@@ -596,6 +761,48 @@
             }
         }
         
+        // Crear iconos educativos animados
+        function createEducationIcons() {
+            const eduIconsContainer = document.getElementById('educationIcons');
+            const eduIconsCount = 15;
+            const eduIconsList = [
+                'fas fa-book',
+                'fas fa-pencil-alt',
+                'fas fa-graduation-cap',
+                'fas fa-ruler',
+                'fas fa-calculator',
+                'fas fa-flask',
+                'fas fa-palette',
+                'fas fa-music',
+                'fas fa-globe-americas',
+                'fas fa-atom'
+            ];
+            
+            for (let i = 0; i < eduIconsCount; i++) {
+                const eduIcon = document.createElement('div');
+                eduIcon.classList.add('edu-icon');
+                
+                // Icono aleatorio
+                const randomIcon = eduIconsList[Math.floor(Math.random() * eduIconsList.length)];
+                eduIcon.innerHTML = `<i class="${randomIcon}"></i>`;
+                
+                // Posición inicial aleatoria
+                eduIcon.style.left = `${Math.random() * 100}vw`;
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 1.5 + 1;
+                eduIcon.style.fontSize = `${size}rem`;
+                
+                // Duración y delay de animación aleatorios
+                const duration = Math.random() * 25 + 15;
+                const delay = Math.random() * 10;
+                eduIcon.style.animationDuration = `${duration}s`;
+                eduIcon.style.animationDelay = `${delay}s`;
+                
+                eduIconsContainer.appendChild(eduIcon);
+            }
+        }
+        
         // Controlar la música de fondo
         function toggleMusic() {
             if (isMusicPlaying) {
@@ -604,7 +811,7 @@
                 musicNotice.textContent = 'Música pausada';
             } else {
                 backgroundMusic.play().catch(error => {
-                    console.log('La reproducción automática fue prevenida:', error);
+                    console.log('Error al reproducir música:', error);
                     musicNotice.textContent = 'Haz clic para activar la música';
                 });
                 musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
@@ -693,16 +900,22 @@
         let sceneTimeout;
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
+            createEducationIcons();
             updateProgressBar();
             
             // Configurar control de música
             musicControl.addEventListener('click', toggleMusic);
             
-            // Intentar reproducir música automáticamente (puede no funcionar en algunos navegadores)
-            setTimeout(() => {
+            // Reproducir música automáticamente con volumen al 30%
+            function startMusic() {
                 backgroundMusic.play().then(() => {
                     isMusicPlaying = true;
                     musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    musicNotice.textContent = 'Música activada automáticamente';
+                    musicNotice.style.display = 'block';
+                    setTimeout(() => {
+                        musicNotice.style.display = 'none';
+                    }, 3000);
                 }).catch(error => {
                     console.log('La reproducción automática fue prevenida:', error);
                     isMusicPlaying = false;
@@ -712,8 +925,20 @@
                     setTimeout(() => {
                         musicNotice.style.display = 'none';
                     }, 3000);
+                    
+                    // Intentar reproducir después de una interacción del usuario
+                    document.addEventListener('click', function startMusicOnClick() {
+                        backgroundMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                            document.removeEventListener('click', startMusicOnClick);
+                        });
+                    }, { once: true });
                 });
-            }, 1000);
+            }
+            
+            // Iniciar música después de un breve retraso
+            setTimeout(startMusic, 1000);
             
             // Iniciar la secuencia de escenas
             sceneTimeout = setTimeout(nextScene, sceneTimes[0]);
